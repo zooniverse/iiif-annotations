@@ -5,6 +5,7 @@
   "main": "index.js",
   "repository": "zooniverse/iiif-annotations",
   "scripts": {
+    "build": "npx @11ty/eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Zooniverse",
