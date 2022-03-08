@@ -14,23 +14,17 @@ function transformTextTasks(annotations, canvas) {
 }
 
 function annotations({ manifest, dates }) {
-  const items = dates.map(classification => {
+  return dates.map(classification => {
     const { metadata, annotations, subjectMetadata } = classification
     const canvasIndex = subjectMetadata['#priority'] - 1
     const [ sequence ] = manifest.sequences
     const canvas = sequence.canvases[canvasIndex]
     return transformTextTasks(annotations, canvas)
   })
-  return {
-    '@context': 'http://iiif.io/api/presentation/3/context.json',
-    id: 'https://zooniverse.github.io/iiif-annotations/annotations/dates.json',
-    type: 'AnnotationPage',
-    items
-  }
 }
 
 module.exports = {
   eleventyComputed: {
-    annotations: annotations
+    annotations
   }
 }

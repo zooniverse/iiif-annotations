@@ -1,11 +1,25 @@
+const PAGE_SIZE = 100
+
 module.exports = class DatesPage {
   data() {
     return {
-      permalink: '/annotations/dates.json'
+      pagination: {
+        data: 'dates',
+        size: PAGE_SIZE
+      },
+      permalink: ctx => `/annotations/dates/${ctx.pagination.pageNumber}.json`
     }
   }
 
-  render(ctx) {
-    return JSON.stringify(ctx.annotations)
+  render({ annotations, pagination }) {
+    const start = pagination.pageNumber * PAGE_SIZE
+    const finish = start + PAGE_SIZE
+    const page = {
+      '@context': 'http://iiif.io/api/presentation/3/context.json',
+      id: 'https://zooniverse.github.io/iiif-annotations/annotations/dates.json',
+      type: 'AnnotationPage',
+      items: annotations.slice(start, finish)
+    }
+    return JSON.stringify(page)
   }
 }
