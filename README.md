@@ -8,4 +8,5 @@ npx eleventy --serve
 ```
 
 Or browse work in progress at
-https://zooniverse.github.io/iiif-annotations/annotations/titles.json
+- https://zooniverse.github.io/iiif-annotations/annotations/dates.json
+- https://zooniverse.github.io/iiif-annotations/annotations/titles.json
