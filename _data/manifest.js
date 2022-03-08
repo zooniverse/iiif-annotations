@@ -1,6 +1,5 @@
 const fetch = require('node-fetch')
-
-const MANIFEST_URL = 'https://api.bl.uk/metadata/iiif/ark:/81055/vdc_100022589176.0x000002/manifest.json'
+const { manifestUrl } = require('./config')
 
 async function readManifest(url) {
   if (url) {
@@ -16,4 +15,4 @@ async function readManifest(url) {
   return null
 }
 
-module.exports = readManifest(MANIFEST_URL)
+module.exports = readManifest(manifestUrl)

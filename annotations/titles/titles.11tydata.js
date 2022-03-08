@@ -1,8 +1,5 @@
-const MAX_SUBJECT_HEIGHT = 2000
-const MAX_SUBJECT_WIDTH = 1400
-
-function scaledRectangle(rectangle, canvas) {
-  const scale = Math.max((canvas.height / MAX_SUBJECT_HEIGHT), (canvas.width / MAX_SUBJECT_WIDTH))
+function scaledRectangle(rectangle, canvas, { imageHeight, imageWidth }) {
+  const scale = Math.max((canvas.height / imageHeight), (canvas.width / imageWidth))
   const { x_center, y_center, width, height } = rectangle
   const x = parseInt((x_center - (width / 2)) * scale, 10)
   const y = parseInt((y_center - (height / 2)) * scale, 10)
@@ -10,11 +7,11 @@ function scaledRectangle(rectangle, canvas) {
   const h = parseInt(height * scale, 10)
   return { x, y, w, h }
 }
-function transformRectangles(annotations, canvas) {
+function transformRectangles(annotations, canvas, config) {
   const drawing = annotations.find(annotation => annotation.task === 'T0')
   const rectangles = drawing.value
   return rectangles.map((rectangle, index) => {
-    const { x, y, w, h } = scaledRectangle(rectangle, canvas)
+    const { x, y, w, h } = scaledRectangle(rectangle, canvas, config)
     const textAnnotation = annotations.find(annotation => annotation.markIndex === index)
     const label = textAnnotation.value
     return {
@@ -31,13 +28,13 @@ function transformRectangles(annotations, canvas) {
   })
 }
 
-function annotations({ manifest, titles }) {
+function annotations({ config, manifest, titles }) {
   return titles.map(classification => {
     const { metadata, annotations, subjectMetadata } = classification
     const canvasIndex = subjectMetadata['#priority'] - 1
     const [ sequence ] = manifest.sequences
     const canvas = sequence.canvases[canvasIndex]
-    return transformRectangles(annotations, canvas)
+    return transformRectangles(annotations, canvas, config)
   })
 }
 
