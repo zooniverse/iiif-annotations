@@ -5,17 +5,19 @@ module.exports = class DatesIndex {
     }
   }
 
-  render() {
+  render({ collections }) {
+    const datePage = collections.all.find(collection => collection.template.filePathStem === '/annotations/dates/dates')
+    const datePagination = datePage.data.pagination
     const page = {
       '@context': 'http://iiif.io/api/presentation/3/context.json',
       id: 'https://zooniverse.github.io/iiif-annotations/annotations/dates.json',
       type: 'AnnotationCollection',
       first: {
-        id: 'https://zooniverse.github.io/iiif-annotations/annotations/dates/0.json',
+        id: `https://zooniverse.github.io/iiif-annotations${datePagination.href.first}`,
         type: 'AnnotationPage'
       },
       last: {
-        id: 'https://zooniverse.github.io/iiif-annotations/annotations/dates/9.json',
+        id: `https://zooniverse.github.io/iiif-annotations${datePagination.href.last}`,
         type: 'AnnotationPage'
       }
     }
