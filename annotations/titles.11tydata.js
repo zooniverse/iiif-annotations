@@ -31,18 +31,14 @@ function transformRectangles(annotations, canvas) {
   })
 }
 
-function annotations({ manifest, classifications }) {
-  return classifications.map(classification => {
+function annotations({ manifest, titles }) {
+  return titles.map(classification => {
     const { metadata, annotations, subjectMetadata } = classification
     const canvasIndex = subjectMetadata['#priority'] - 1
     const [ sequence ] = manifest.sequences
     const canvas = sequence.canvases[canvasIndex]
-    return {
-      annotation: transformRectangles(annotations, canvas),
-      canvas,
-      subjectMetadata
-    }
-  })
+    return transformRectangles(annotations, canvas)
+  }).flat()
 }
 
 module.exports = {
