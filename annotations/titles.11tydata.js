@@ -32,13 +32,19 @@ function transformRectangles(annotations, canvas) {
 }
 
 function annotations({ manifest, titles }) {
-  return titles.map(classification => {
+  const items = titles.map(classification => {
     const { metadata, annotations, subjectMetadata } = classification
     const canvasIndex = subjectMetadata['#priority'] - 1
     const [ sequence ] = manifest.sequences
     const canvas = sequence.canvases[canvasIndex]
     return transformRectangles(annotations, canvas)
   }).flat()
+  return {
+    '@context': 'http://iiif.io/api/presentation/3/context.json',
+    id: 'https://zooniverse.github.io/iiif-annotations/annotations/titles.json',
+    type: 'AnnotationPage',
+    items
+  }
 }
 
 module.exports = {
