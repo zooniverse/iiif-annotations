@@ -16,8 +16,12 @@ module.exports = class DatesPage {
     const finish = start + PAGE_SIZE
     const page = {
       '@context': 'http://iiif.io/api/presentation/3/context.json',
-      id: 'https://zooniverse.github.io/iiif-annotations/annotations/dates.json',
+      id: `https://zooniverse.github.io/iiif-annotations/annotations/dates/${pagination.pageNumber}.json`,
       type: 'AnnotationPage',
+      partOf: {
+        id: 'https://zooniverse.github.io/iiif-annotations/annotations/dates.json',
+        type: "AnnotationCollection"
+      },
       items: annotations.slice(start, finish)
     }
     return JSON.stringify(page)
