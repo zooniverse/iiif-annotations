@@ -24,6 +24,19 @@ module.exports = class DatesPage {
       },
       items: annotations.slice(start, finish)
     }
+    const { href } = pagination
+    if (href.previous) {
+      page.previous = {
+        id: `https://zooniverse.github.io/iiif-annotations${href.previous}`,
+        type: 'AnnotationPage'
+      }
+    }
+    if (href.next) {
+      page.next = {
+        id: `https://zooniverse.github.io/iiif-annotations${href.next}`,
+        type: 'AnnotationPage'
+      }
+    }
     return JSON.stringify(page)
   }
 }
