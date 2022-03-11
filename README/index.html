@@ -30,7 +30,7 @@ npx eleventy --serve
 <ul>
 <li><code>index.11ty.js</code>: publishes an <a href="https://iiif.io/api/presentation/3.0/#58-annotation-collection">annotation collection</a> at <code>/annotations/titles.json</code></li>
 <li><code>titles.11tydata.js</code>: parse the CSV classifications into an array of title annotations, with IDs. Each classification contains multiple drawings, so the final result is flattened into a single array of performance titles.</li>
-<li><code>tilees.11ty.js</code>: loops over the default sequence of canvases in the manifest (<code>manifest.sequences[0].canvases</code>), printing out a JSON <a href="https://iiif.io/api/presentation/3.0/#55-annotation-page"><code>AnnotationPage</code></a> with title annotation items for each canvas.</li>
+<li><code>titles.11ty.js</code>: loops over the default sequence of canvases in the manifest (<code>manifest.sequences[0].canvases</code>), printing out a JSON <a href="https://iiif.io/api/presentation/3.0/#55-annotation-page"><code>AnnotationPage</code></a> with title annotation items for each canvas.</li>
 </ul>
 </li>
 </ul>
