@@ -1,19 +1,17 @@
-const PAGE_SIZE = 100
-
 module.exports = class TitlesPage {
   data() {
     return {
       pagination: {
-        data: 'titles',
-        size: PAGE_SIZE
+        data: 'manifest.sequences[0].canvases',
+        size: 1
       },
       permalink: ctx => `/annotations/titles/${ctx.pagination.pageNumber}.json`
     }
   }
 
   render({ annotations, pagination }) {
-    const start = pagination.pageNumber * PAGE_SIZE
-    const finish = start + PAGE_SIZE
+    const [canvas] = pagination.items
+    const items = annotations.filter(annotation => annotation.target.startsWith(canvas['@id']))
     const page = {
       '@context': 'http://iiif.io/api/presentation/3/context.json',
       id: `https://zooniverse.github.io/iiif-annotations/annotations/titles/${pagination.pageNumber}.json`,
@@ -22,7 +20,7 @@ module.exports = class TitlesPage {
         id: 'https://zooniverse.github.io/iiif-annotations/annotations/titles.json',
         type: "AnnotationCollection"
       },
-      items: annotations.slice(start, finish).flat()
+      items
     }
     const { href } = pagination
     if (href.previous) {
