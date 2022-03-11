@@ -11,7 +11,7 @@ module.exports = class DatesPage {
 
   render({ annotations, pagination }) {
     const [canvas] = pagination.items
-    const items = annotations.filter(annotation => annotation.target.startsWith(canvas['@id']))
+    const items = annotations.filter(annotation => annotation.target.source.id === canvas['@id'])
     const page = {
       '@context': 'http://iiif.io/api/presentation/3/context.json',
       id: `https://zooniverse.github.io/iiif-annotations/annotations/dates/${pagination.pageNumber}.json`,
