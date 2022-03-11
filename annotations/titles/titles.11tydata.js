@@ -28,14 +28,18 @@ function transformRectangles(annotations, canvas, config) {
   })
 }
 
-function annotations({ config, manifest, titles }) {
-  return titles.map(classification => {
+function annotations({ config, manifest, titles: classifications }) {
+  const titles = classifications.map(classification => {
     const { metadata, annotations, subjectMetadata } = classification
     const canvasIndex = subjectMetadata['#priority'] - 1
     const [ sequence ] = manifest.sequences
     const canvas = sequence.canvases[canvasIndex]
     return transformRectangles(annotations, canvas, config)
+  }).flat()
+  titles.forEach((title, index) => {
+    title.id = `https://zooniverse.github.io/iiif-annotations/bldigital/in-the-spotlight/titles/${index}`
   })
+  return titles
 }
 
 module.exports = {

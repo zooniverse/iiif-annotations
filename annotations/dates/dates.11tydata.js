@@ -13,14 +13,18 @@ function transformTextTasks(annotations, canvas) {
   }
 }
 
-function annotations({ manifest, dates }) {
-  return dates.map(classification => {
+function annotations({ manifest, dates: classifications }) {
+  const dates = classifications.map(classification => {
     const { metadata, annotations, subjectMetadata } = classification
     const canvasIndex = subjectMetadata['#priority'] - 1
     const [ sequence ] = manifest.sequences
     const canvas = sequence.canvases[canvasIndex]
     return transformTextTasks(annotations, canvas)
   })
+  dates.forEach((date, index) => {
+    date.id = `https://zooniverse.github.io/iiif-annotations/bldigital/in-the-spotlight/dates/${index}`
+  })
+  return dates
 }
 
 module.exports = {
