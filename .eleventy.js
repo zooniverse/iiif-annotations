@@ -6,6 +6,10 @@ module.exports = function (eleventyConfig) {
       columns: true,
       skip_empty_lines: true,
     })
+    const [record] = records
+    if (record.reducer) {
+      return records
+    }
     const classifications = records.map(({ metadata, annotations, subject_data }) => {
       const [ subjectArray ] = Object.entries(JSON.parse(subject_data))
       const [ subjectID, subjectMetadata ] = subjectArray
