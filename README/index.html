@@ -8,17 +8,26 @@ npx eleventy --serve
 <ul>
 <li>https://zooniverse.github.io/iiif-annotations/annotations/dates.json</li>
 <li>https://zooniverse.github.io/iiif-annotations/annotations/titles.json</li>
+<li>https://zooniverse.github.io/iiif-annotations/annotations/consensusDates.json</li>
 </ul>
 <h2>How it works</h2>
 <p>Builds are run by <a href="https://1ty.dev">Eleventy</a> and managed by GitHub Actions. Merging a change to the data files in the <code>_data</code> directory will build a new collection of JSON files.</p>
 <p><code>_data</code> contains the source data files:</p>
 <ul>
 <li><code>config.json</code>: the URL of the source manifest, and the dimensions of the Zooniverse images, which are needed to scale annotations back up to the original canvas.</li>
+<li><code>consensusDates.csv</code>: CSV output from the Caesar text reducer for the Dates workflow.</li>
 <li><code>dates.csv</code>: a workflow classifications export for the Dates workflow, stripped of volunteers' personal data.</li>
 <li><code>titles.csv</code>: a workflow classifications export for the Titles workflow, stripped of volunteers' personal data.</li>
 </ul>
 <p>Output templates are in the <code>annotations</code> directory:</p>
 <ul>
+<li><code>annotations/consensusDates</code>
+<ul>
+<li><code>index.11ty.js</code>: publishes an <a href="https://iiif.io/api/presentation/3.0/#58-annotation-collection">annotation collection</a> at <code>/annotations/consensusDates.json</code></li>
+<li><code>dates.11tydata.js</code>: parse the CSV text annotations into an array of date annotations, with IDs.</li>
+<li><code>dates.11ty.js</code>: loops over the default sequence of canvases in the manifest (<code>manifest.sequences[0].canvases</code>), printing out a JSON <a href="https://iiif.io/api/presentation/3.0/#55-annotation-page"><code>AnnotationPage</code></a> with one date annotation item for each canvas.</li>
+</ul>
+</li>
 <li><code>annotations/dates</code>
 <ul>
 <li><code>index.11ty.js</code>: publishes an <a href="https://iiif.io/api/presentation/3.0/#58-annotation-collection">annotation collection</a> at <code>/annotations/dates.json</code></li>
