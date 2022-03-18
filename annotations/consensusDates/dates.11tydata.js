@@ -14,6 +14,7 @@ function transformConsensusText(consensus, canvas, partOf) {
       format: 'text/plain'
     },
     target: {
+      type: 'SpecificResource',
       source
     }
   }

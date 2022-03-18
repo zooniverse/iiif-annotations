@@ -15,6 +15,7 @@ function transformTextTasks(annotations, canvas, partOf) {
       format: 'text/plain'
     },
     target: {
+      type: 'SpecificResource',
       source
     }
   }

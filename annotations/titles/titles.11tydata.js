@@ -34,6 +34,7 @@ function transformRectangles(annotations, canvas, config, partOf) {
         format: 'text/plain'
       },
       target: {
+        type: 'SpecificResource',
         source,
         selector
       }
