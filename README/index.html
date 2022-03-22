@@ -10,6 +10,16 @@ npx eleventy --serve
 <li>https://zooniverse.github.io/iiif-annotations/annotations/titles.json (individual titles and rectangles drawn by volunteers.)</li>
 <li>https://zooniverse.github.io/iiif-annotations/annotations/consensusDates.json (consensus dates, one per playbill.)</li>
 </ul>
+<h2>Publishing annotations</h2>
+<p>You will need classifications exports and/or consensus results for subjects that were created from an IIIF manifest (see https://github.com/zooniverse/Panoptes-Front-End/pull/6095.) Currently, only <a href="https://frontend.preview.zooniverse.org/projects/bldigital/in-the-spotlight">In The Spotlight</a> uses that feature, so the code here is specific to its two workflows.</p>
+<ol>
+<li>Clone this repo so that you can edit it locally.</li>
+<li>Edit <code>_data/config.js</code> and make sure that the manifest URL points to the correct manifest.</li>
+<li>Download dates and titles workflow classifications exports from the project builder, strip them of volunteers' personal information and save them to <code>_data/dates.csv</code> and<code>_data/titles.csv</code>.</li>
+<li>Run offline aggregation to generate consensus results. Version 2 drawing tools aren't currently supported, but you can aggregate the dates workflow and save the consensus results as <code>_data/consensusDates.csv</code>.</li>
+<li>Commit your changes to the <code>_data/</code> directory and push to GitHub.</li>
+<li>Wait a couple of minutes and your new annotations should have been published at the URLs given above.</li>
+</ol>
 <h2>How it works</h2>
 <p>Builds are run by <a href="https://1ty.dev">Eleventy</a> and managed by GitHub Actions. Merging a change to the data files in the <code>_data</code> directory will build a new collection of JSON files.</p>
 <p><code>_data</code> contains the source data files:</p>
