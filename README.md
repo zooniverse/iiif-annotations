@@ -8,9 +8,9 @@ npx eleventy --serve
 ```
 
 Or browse work in progress at
-- https://zooniverse.github.io/iiif-annotations/annotations/dates.json
-- https://zooniverse.github.io/iiif-annotations/annotations/titles.json
-- https://zooniverse.github.io/iiif-annotations/annotations/consensusDates.json
+- https://zooniverse.github.io/iiif-annotations/annotations/dates.json (individual dates entered by volunteers.)
+- https://zooniverse.github.io/iiif-annotations/annotations/titles.json (individual titles and rectangles drawn by volunteers.)
+- https://zooniverse.github.io/iiif-annotations/annotations/consensusDates.json (consensus dates, one per playbill.)
 
 ## How it works
 Builds are run by [Eleventy](https://1ty.dev) and managed by GitHub Actions. Merging a change to the data files in the `_data` directory will build a new collection of JSON files.
