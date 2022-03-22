@@ -12,7 +12,19 @@ Or browse work in progress at
 - https://zooniverse.github.io/iiif-annotations/annotations/titles.json (individual titles and rectangles drawn by volunteers.)
 - https://zooniverse.github.io/iiif-annotations/annotations/consensusDates.json (consensus dates, one per playbill.)
 
+## Publishing annotations
+
+You will need classifications exports and/or consensus results for subjects that were created from an IIIF manifest (see https://github.com/zooniverse/Panoptes-Front-End/pull/6095.) Currently, only [In The Spotlight](https://frontend.preview.zooniverse.org/projects/bldigital/in-the-spotlight) uses that feature, so the code here is specific to its two workflows.
+
+1. Clone this repo so that you can edit it locally.
+2. Edit `_data/config.js` and make sure that the manifest URL points to the correct manifest.
+3. Download dates and titles workflow classifications exports from the project builder, strip them of volunteers' personal information and save them to `_data/dates.csv` and`_data/titles.csv`.
+4. Run offline aggregation to generate consensus results. Version 2 drawing tools aren't currently supported, but you can aggregate the dates workflow and save the consensus results as `_data/consensusDates.csv`.
+5. Commit your changes to the `_data/` directory and push to GitHub.
+6. Wait a couple of minutes and your new annotations should have been published at the URLs given above.
+
 ## How it works
+
 Builds are run by [Eleventy](https://1ty.dev) and managed by GitHub Actions. Merging a change to the data files in the `_data` directory will build a new collection of JSON files.
 
 `_data` contains the source data files:
