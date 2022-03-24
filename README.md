@@ -21,7 +21,7 @@ You will need classifications exports and/or consensus results for subjects that
 3. Download dates and titles workflow classifications exports from the project builder, strip them of volunteers' personal information and save them to `_data/dates.csv` and`_data/titles.csv`.
 4. Run offline aggregation to generate consensus results. Version 2 drawing tools aren't currently supported, but you can aggregate the dates workflow and save the consensus results as `_data/consensusDates.csv`.
 5. Commit your changes to the `_data/` directory and push to GitHub.
-6. Wait a couple of minutes and your new annotations should have been published at the URLs given above.
+6. Wait a couple of minutes and your new annotations should have been published as [annotation collections](https://iiif.io/api/presentation/3.0/#58-annotation-collection) at the URLs given above.
 
 ## How it works
 
