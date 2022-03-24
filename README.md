@@ -19,7 +19,7 @@ You will need classifications exports and/or consensus results for subjects that
 1. Clone this repo so that you can edit it locally.
 2. Edit `_data/config.js` and make sure that the manifest URL points to the correct manifest.
 3. Download dates and titles workflow classifications exports from the project builder, strip them of volunteers' personal information and save them to `_data/dates.csv` and`_data/titles.csv`.
-4. Run offline aggregation to generate consensus results. Version 2 drawing tools aren't currently supported, but you can aggregate the dates workflow and save the consensus results as `_data/consensusDates.csv`.
+4. Run [offline aggregation](https://aggregation-caesar.zooniverse.org/README.html#installing-for-offline-use) to generate consensus results. Version 2 drawing tools aren't currently supported, but you can aggregate the dates workflow and save the consensus results as `_data/consensusDates.csv`.
 5. Commit your changes to the `_data/` directory and push to GitHub.
 6. Wait a couple of minutes and your new annotations should have been published as [annotation collections](https://iiif.io/api/presentation/3.0/#58-annotation-collection) at the URLs given above.
 
