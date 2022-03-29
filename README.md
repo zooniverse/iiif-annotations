@@ -1,6 +1,8 @@
 # iiif-annotations
 A proof-of-concept, annotating a IIIF manifest with Zooniverse classification data.
 
+Generates [IIIF Annotation Collections](https://iiif.io/api/presentation/3.0/#58-annotation-collection) from Zooniverse project builder data exports, and publishes them on GitHub Pages.
+
 Run it locally with
 ```
 npm install
@@ -14,12 +16,14 @@ Or browse work in progress at
 
 ## Publishing annotations
 
-You will need classifications exports and/or consensus results for subjects that were created from an IIIF manifest (see https://github.com/zooniverse/Panoptes-Front-End/pull/6095.) Currently, only [In The Spotlight](https://frontend.preview.zooniverse.org/projects/bldigital/in-the-spotlight) uses that feature, so the code here is specific to its two workflows.
+The workflow subjects must have been created from an IIIF manifest (see https://github.com/zooniverse/Panoptes-Front-End/pull/6095.) Currently, only [In The Spotlight](https://frontend.preview.zooniverse.org/projects/bldigital/in-the-spotlight) uses that feature, so the code here is specific to its two workflows.
+
+You will need to download classifications exports for the In The Spotlight workflows from the ['Data Exports' page](https://frontend.preview.zooniverse.org/lab/16535/data-exports) in the Project Builder.
 
 1. Clone this repo so that you can edit it locally.
 2. Edit `_data/config.js` and make sure that the manifest URL points to the correct manifest.
-3. Download dates and titles workflow classifications exports from the project builder, strip them of volunteers' personal information and save them to `_data/dates.csv` and`_data/titles.csv`.
-4. Run [offline aggregation](https://aggregation-caesar.zooniverse.org/README.html#installing-for-offline-use) to generate consensus results. Version 2 drawing tools aren't currently supported, but you can aggregate the dates workflow and save the consensus results as `_data/consensusDates.csv`.
+3. If you're only interested in publishing consensus data for your manifest, you can skip this step. Strip the dates and titles workflow classification exports of volunteers' personal information and save them to `_data/dates.csv` and`_data/titles.csv`.
+4. Run [offline aggregation](https://aggregation-caesar.zooniverse.org/README.html#installing-for-offline-use) to generate consensus results from the downloaded classifications. Version 2 drawing tools aren't currently supported, but you can aggregate the dates workflow. Save the consensus results as `_data/consensusDates.csv`.
 5. Commit your changes to the `_data/` directory and push to GitHub.
 6. Wait a couple of minutes and your new annotations should have been published as [annotation collections](https://iiif.io/api/presentation/3.0/#58-annotation-collection) at the URLs given above.
 
