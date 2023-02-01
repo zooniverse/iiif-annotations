@@ -12,7 +12,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@11ty/eleventy": "^1.0.2",
-    "csv-parse": "^5.3.3",
+    "csv-parse": "^5.3.4",
     "node-fetch": "^2.6.7"
   }
 }
