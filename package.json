@@ -11,7 +11,7 @@
   "author": "Zooniverse",
   "license": "Apache-2.0",
   "dependencies": {
-    "@11ty/eleventy": "^1.0.2",
+    "@11ty/eleventy": "^2.0.0",
     "csv-parse": "^5.3.5",
     "node-fetch": "^2.6.7"
   }
