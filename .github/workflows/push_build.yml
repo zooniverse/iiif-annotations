@@ -24,7 +24,7 @@ jobs:
       - run: npx eleventy
 
       - name: upload files
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
